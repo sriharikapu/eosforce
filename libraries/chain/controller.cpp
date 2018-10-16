@@ -1045,8 +1045,7 @@ struct controller_impl {
                trx_context.make_limit_by_contract();
                trx_context.exec();
                trx_context.finalize(); // Automatically rounds up network and CPU usage in trace and bills payers if successful
-             } catch (const fc::exception &e) {
-               trace->except = e;
+             } catch ( ... ) {
                trace->except_ptr = std::current_exception();
                if (head->block_num != 1) {
                  elog("---trnasction exe failed--------trace: ${trace}", ("trace", trace));
